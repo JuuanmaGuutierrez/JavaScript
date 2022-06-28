@@ -1,4 +1,3 @@
-//  variables / constantes
 class productoAgregado{
     constructor(producto, cantidad, id, precio){
         this.id=Number(id),
@@ -12,49 +11,57 @@ const articulos=[
         id:0,
         nombre:"gin",
         precio:1100,
-        cantidad:0
+        cantidad:0,
+        clase:"destilado"
     },
     {
         id:1,
         nombre:"vodka",
         precio:2370,
-        cantidad:0
+        cantidad:0,
+        clase: "destilado"
     },
     {
         id:2,
         nombre:"fernet",
         precio:1250,
-        cantidad:0
+        cantidad:0,
+        clase: "aperitivo"
     },
     {
         id:3,
         nombre:"ron",
         precio:1750,
-        cantidad:0
+        cantidad:0,
+        clase: "destilado"
     },
     {
         id:4,
         nombre:"cerveza",
         precio:270,
-        cantidad:0
+        cantidad:0,
+        clase:"cerveza"
     },
     {
         id:5,
         nombre:"whisky",
         precio:5470,
-        cantidad:0
+        cantidad:0,
+        clase: "destilado"
     },
     {
         id:6,
         nombre:"gaseosa",
         precio:350,
-        cantidad:0
+        cantidad:0,
+        clase:"gaseosa"
     },
     {
         id:7,
         nombre:"hielo",
         precio:300,
-        cantidad:0
+        cantidad:0,
+        clase: "extras"
     }
 ];
 const carrito=[];
@@ -64,8 +71,6 @@ let seleccionarCuotas=0;
 let total=0;
 let totalCuotas=0;
 let volverAComprar=true;
-
-//Funciones
 
 const agregarAlCarro=(seleccionarProducto,seleccionarCantidad)=>{
     let producto=articulos.find(producto=>producto.nombre===seleccionarProducto);
@@ -145,7 +150,7 @@ const pedirProducto=()=>{
 
             Para cancelar la compra, escriba "salir"
                 `);
-                if(seleccionarProducto==null || seleccionarProducto=="" || seleccionarProducto==0){
+                if(seleccionarProducto==null || seleccionarProducto==""){
                     alert(`No ingresaste ningun dato`);
                 }
                 else if((!isNaN(seleccionarProducto))){
@@ -181,24 +186,24 @@ const pedirCuotas=()=>{
     }while(isNaN(seleccionarCuotas))
 }
 //Logica
-    do{
-        pedirProducto();
-        seleccionarProducto.toLowerCase();
-        if(seleccionarProducto=="salir"){
-            break;
-        }
-        pedirCantidad();
-        agregarAlCarro(seleccionarProducto,seleccionarCantidad);
-        verCarrito();
-        alert(`El sutotal es de =$${+calcularTotal()}`);
-        volverAComprar=confirm(`Quiere agregar otro producto al carrito?`);
-        if(volverAComprar==false){
-            break;
-        }
-    }while(seleccionarProducto!="salir" || volverAComprar==true);
-    if(volverAComprar==false){
-        pedirCuotas();
-        calcularCuotas(seleccionarCuotas);
-        mostrarTotal();
+do{
+    pedirProducto();
+    seleccionarProducto.toLowerCase();
+    if(seleccionarProducto=="salir"){
+        break;
     }
-console.log(`gracias por visitar nuestra tienda`);
+    pedirCantidad();
+    agregarAlCarro(seleccionarProducto,seleccionarCantidad);
+    verCarrito();
+    alert(`El sutotal es de =$${+calcularTotal()}`);
+    volverAComprar=confirm(`Quiere agregar otro producto al carrito?`);
+    if(volverAComprar==false){
+        break;
+    }
+}while(seleccionarProducto!="salir" || volverAComprar==true);
+if(volverAComprar==false){
+    pedirCuotas();
+    calcularCuotas(seleccionarCuotas);
+    mostrarTotal();
+}
+console.log("Gracias por su compra");
